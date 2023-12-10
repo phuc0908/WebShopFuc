@@ -51,7 +51,7 @@
                     <tr class="one-product">
                         <td class="img-product">
                             <a href="{{ route('client.product', ['id'=>$size['product_id']]) }}">
-                                <img src="{{asset('storage/'.$size['image'])}}" alt="" />
+                                <img src="{{ $size['image'] }}" alt="" />
                             </a>
                         </td>
                         <td class="name-product">

@@ -52,7 +52,7 @@ class Cart
     }
 
     // Add cart
-    public function add($product_id, $quantity = 1, $color_id, $size_id)
+    public function add($product_id, $quantity = 1, $color_id, $size_id, $path)
     {
         $product = (new Product)->get($product_id);
         $color = (new Color)->get($color_id);
@@ -65,7 +65,7 @@ class Cart
                 'product_id' => $product_id,
                 'product_name' => $product[0]->name,
                 'quantity' => $quantity,
-                'image' => $product[0]->img,
+                'image' => $path,
                 'price' => $product[0]->price_final,
                 'color_id' => $color_id,
                 'size_id' => $size_id,

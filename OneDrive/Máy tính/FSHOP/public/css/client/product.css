@@ -170,7 +170,7 @@ header img {
     width: 370px;
     height: 554px;
 }
-form.infor-product {
+div.infor-product {
     flex: 1;
     display: flex;
     padding: 0 0 0 350px;

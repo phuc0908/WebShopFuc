@@ -13,7 +13,7 @@
     </style>
 
     <div class="maincontent" id="id-content">
-        <h3> Đơn hàng của bạn đang chờ xác nhận</h3>
+        <h3> Đơn hàng của bạn đang chờ xác nhận hehe</h3>
     </div>
 </section>
 

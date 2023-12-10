@@ -107,11 +107,12 @@ class AuthController extends Controller
 
         $count = 0;
         foreach ($olddatas as $data) {
-            if ($data->username === $request->username || $data->email === $request->email || $request->pass === $request->re_pass) {
+            if ($data->username === $request->username || $data->email === $request->email || $request->pass !== $request->re_pass) {
                 $count++;
                 break;
             }
         }
+        // dd($count);
         // Check
         if ($count == 0) {
             return true;
@@ -139,7 +140,7 @@ class AuthController extends Controller
             (new User)->insert($name, $username, $email, $pass, $address, $phone, $dateNow, $status, $token, $province_id, $district_id, $ward_id);
             return redirect()->route("client.auth.signin")->with("alertSignUp", "Đăng ký thành công");
         } else {
-            return redirect()->route("client.auth.signup")->with("alertSignUpErr", "Đăng ký không thành công, Bạn cần kiểm tra lại email,tên đăng nhập");
+            return redirect()->route("client.auth.signup")->with("alertSignUpErr", "Đăng ký không thành công, Bạn cần kiểm tra lại email, tên đăng nhập, mật khẩu");
         }
     }
 

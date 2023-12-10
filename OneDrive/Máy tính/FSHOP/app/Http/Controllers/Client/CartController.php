@@ -48,17 +48,21 @@ class CartController extends Controller
      * Store a newly created resource in storage.
      */
     // Add cart
-    public function store(Request $request, Cart $cart)
+    public function store(Request $request, Cart $cart, $id)
     {
         $quantity = $request->quantity;
         $product_id = $request->id;
         $color_id = $request->color_id;
         $size_id = $request->size_id;
+        $path = $request->img_id;
+        // dd($path);
 
-        $addCart = $cart->add($product_id, $quantity, $color_id, $size_id);
+        $addCart = $cart->add($product_id, $quantity, $color_id, $size_id, $path);
         // dd(session('cart'));
         if ($addCart) {
             return redirect()->route("client.cart");
+        } else {
+            return redirect()->route("client.product", [$id])->with("alertErr", "Bạn chưa chọn size hoặc màu sản phẩm");
         }
     }
     /**

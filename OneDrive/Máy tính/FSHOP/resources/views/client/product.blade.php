@@ -29,13 +29,24 @@
         cursor: pointer;
     }
 
-    .alert {
+    .alert.u {
+        z-index: 99;
         padding: 20px;
-        background-color: #f44336;
-        /* Red */
+        background-color: rgb(71, 168, 245);
+        /* Blue */
         color: white;
         margin-bottom: 15px;
     }
+
+    .alert.d {
+        z-index: 99;
+        padding: 20px;
+        background-color: #f44336;
+        /* Blue */
+        color: white;
+        margin-bottom: 15px;
+    }
+
 
     /* The close button */
     .closebtn {
@@ -56,7 +67,7 @@
 </style>
 <section class="container">
     @if (session('alertErr'))
-    <div class="alert">
+    <div class="alert d" style="width: 100%;position: absolute;top:0">
         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
         {{ session('alertErr') }}
     </div>
@@ -64,7 +75,7 @@
     @endif
     @if(!empty($data))
     @foreach($data as $value)
-    <div class="top-container">
+    <div class="top-container" style="position: absolute;top: 10px;">
         <ul>
 
             <li><a href="{{ route('client.index') }}">Trang Chủ</a></li>
@@ -78,7 +89,7 @@
     </div>
 
 
-    <div class="center-container">
+    <form class="center-container" action="{{ route('client.product.addCart' , ['id'=>$value->id]) }}" method="post" style="margin-top: 140px;">
         <div class="pic-product" style="display: flex;">
             <div>
                 <ul>
@@ -95,7 +106,7 @@
             <!-- <img src="../../img/aophongdung.jpg" alt="" class="pic-two" /> -->
         </div>
 
-        <form action="{{ route('client.product.addCart' , ['id'=>$value->id]) }}" method="post" class="infor-product">
+        <div class="infor-product">
             @csrf
             <h1>{{$value->name}}</h1>
             <p>
@@ -148,16 +159,15 @@
                 <input aria-label="quantity" class="input-qty" name="quantity" type="number" value="1" max="20" min="1" />
                 <input class="plus is-form" type="button" value="+" />
             </div>
-            <div class="trade">
 
+            <div class="trade">
                 <button type="submit" class="add">
                     <h4>Thêm Vào Giỏ</h4>
                 </button>
-
-
             </div>
-        </form>
-    </div>
+
+        </div>
+    </form>
 
     <!-- Introduce -->
     <style>

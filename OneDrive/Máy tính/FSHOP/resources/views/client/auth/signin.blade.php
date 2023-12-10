@@ -12,6 +12,15 @@
         margin-bottom: 15px;
     }
 
+    .alert.u {
+        z-index: 99;
+        padding: 20px;
+        background-color: rgb(71, 168, 245);
+        /* Blue */
+        color: white;
+        margin-bottom: 15px;
+    }
+
 
     /* The close button */
     .closebtn {
@@ -37,6 +46,12 @@
     <div class="alert d">
         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
         {{ session('alertErr') }}
+    </div>
+    @endif
+    @if (session('alertSignUp'))
+    <div class="alert u">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        {{ session('alertSignUp') }}
     </div>
     @endif
 
