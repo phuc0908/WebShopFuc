@@ -1,0 +1,176 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: black;
+    outline: none;
+    font-family: "Montserrat", sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+header {
+    height: 90px;
+    width: 100vw;
+    border-bottom: 3px solid #dddd;
+    text-align: center;
+    padding-top: 30px;
+}
+
+.active {
+    background-color: black;
+}
+
+/* ---------------INSERT TYPE ------------------*/
+.admin-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Container Right*/
+.admin-container-right {
+    width: 100%;
+    text-align: left;
+    height: auto;
+    overflow-y: auto;
+    padding: 100px 0 0 188px;
+}
+
+.admin-container-type-add input {
+    height: 30px;
+    width: 300px;
+    padding-left: 12px;
+    margin-bottom: 20px;
+}
+.admin-container-type-add select {
+    height: 30px;
+    width: 300px;
+    padding-left: 12px;
+    margin-bottom: 20px;
+}
+
+.admin-container-type-add button,
+.addbutton {
+    display: block;
+    margin: 20px 5px;
+    width: 100px;
+    height: 30px;
+    cursor: pointer;
+    background: rgb(0, 140, 186);
+    border: none;
+    color: white;
+    border-radius: 6px;
+    transition: all 0.5s ease;
+}
+
+.admin-container-type-add button:hover,
+.addbutton:hover {
+    box-shadow: 0 0 0 2px white, 0 0 0 4px rgb(0, 140, 186);
+}
+input[type="file"] {
+    margin-top: -20px;
+}
+
+/* -------------LIST TYPE ----------------*/
+
+.admin-container-type-list table,
+.addform {
+    width: 100%;
+    /* text-align: center; */
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+.admin-container-type-list table th,
+.addform th {
+    text-align: center;
+    width: 200px;
+    background: rgb(255, 224, 105);
+    color: rgb(29, 30, 78);
+}
+
+.admin-container-type-list table tr th,
+td {
+    border: 1px solid #111010dd;
+    height: 30px;
+    padding: 0 10px;
+}
+
+.admin-container-type-list table tr:hover,
+.addform tr:hover {
+    background: rgb(193, 190, 190);
+}
+
+.admin-container-type-list table tr th:last-child,
+.addform tr th:last-child {
+    width: 50px;
+}
+
+.admin-container-type-list table tr td a:hover {
+    color: rgb(0, 140, 186);
+}
+
+.admin-container-type-list table tr td:last-child form,
+.addform tr td:last-child {
+    cursor: pointer;
+}
+
+/*  */
+/*  */
+
+/* slideBar */
+.admin-container-left ul li ul li a:hover {
+    color: rgb(0, 140, 186);
+}
+
+.admin-container-left {
+    font-size: 12px;
+    /* flex: 2; */
+    width: 12%;
+    background: navajowhite;
+    height: 100vh;
+    padding: 50px 0 0 20px;
+    text-align: left;
+}
+
+.admin-container-left > ul > li > a {
+    font-weight: bold;
+}
+
+.admin-container-left ul > li {
+    margin: 6px 0;
+}
+
+.admin-container-left ul ul {
+    margin-left: 20px;
+}
+
+/* Inside dont move it */
+select {
+    height: 30px;
+    width: 200px;
+}
+
+form {
+    display: flex;
+    position: relative;
+    width: 97%;
+}
+form div {
+    width: 100%;
+}
+input {
+    width: 400px;
+}
+form p {
+    margin-top: 15px;
+    font-size: small;
+}

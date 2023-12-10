@@ -1,0 +1,686 @@
+#toggle-button {
+    position: fixed;
+    bottom: 500px;
+    right: 10px;
+    height: 100px;
+    width: 100px;
+    border-radius: 100px;
+    border: none;
+    background-color: rgb(91, 223, 252);
+    text-align: center;
+    position: fixed;
+    bottom: 40px;
+    right: 20px;
+}
+#chat-header {
+    display: flex;
+    padding: 0 15px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.chat-head-right button {
+    width: 40px;
+    height: 40px;
+    outline: none;
+    border: none;
+    border-radius: 100px;
+    margin-top: 0px;
+    cursor: pointer;
+}
+.chat-head-right button ion-icon {
+    font-size: 23px;
+}
+
+.chat-container {
+    width: 400px;
+    height: 500px;
+    border: 1px solid #ccc;
+    display: none;
+    flex-direction: column;
+    background-color: #fff;
+    position: fixed;
+    bottom: 150px;
+    right: 10px;
+    padding-top: 10px;
+    border-radius: 10px;
+    border-bottom-style: hidden;
+}
+
+#chat-display {
+    flex-grow: 1;
+    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border: none;
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+#chat-display .message span {
+    display: table-cell;
+    word-break: break-word;
+    padding: 8px 12px;
+    text-align: start;
+}
+
+#chat-display .message {
+    display: table;
+    background: rgb(29, 118, 228);
+    border-radius: 18px;
+    margin: 15px 0 0 140px;
+    padding: 6 12px;
+    width: 240px;
+}
+#chat-display .mes-admin p {
+    word-break: break-word;
+    padding: 8px 12px;
+    text-align: start;
+}
+
+#chat-display .mes-admin {
+    background: rgb(29, 118, 228);
+    border-radius: 18px;
+    margin: 15px 0 0 12px;
+    padding: 6 12px;
+    width: 225px;
+}
+
+.icon-mes ion-icon {
+    color: #fff;
+    font-size: 50px;
+}
+.input-chat {
+    display: flex;
+    justify-content: space-between;
+    border-bottom-style: hidden;
+    width: 100%;
+}
+
+#user-input {
+    height: 30px;
+    margin-bottom: 5px;
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 17px;
+    padding-left: 5px;
+}
+
+#send-button {
+    width: 50px;
+    outline: none;
+    border: none;
+    background: #fff;
+}
+#send-button span {
+    opacity: 0.5;
+}
+#send-button span ion-icon {
+    font-size: 25px;
+    color: rgb(0, 125, 242);
+    cursor: pointer;
+}
+
+.show {
+    display: flex;
+}
+
+/* bvvvvvvvvvvbbbbbbbbbbbbbbbbbbbbbbbbbbbb */
+li {
+    list-style: none;
+    color: #333;
+}
+a {
+    text-decoration: none;
+    user-select: none;
+    color: #333;
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html {
+    font-size: 62, 5%;
+    line-height: 27px;
+    font-family: "Roboto", sans-serif;
+}
+
+/* ------------------------------HEADER-------------------------- */
+
+header {
+    display: flex;
+    height: 100px;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    background: #ffff;
+    z-index: 1;
+}
+header::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    height: 0.1px;
+    width: 95%;
+    background-color: gray;
+    z-index: -1;
+}
+
+header img {
+    width: 150px;
+    height: 150px;
+}
+/* HEAD LEFT */
+.head_left {
+    display: flex;
+    align-items: center;
+}
+.list-icon {
+    display: flex;
+    list-style: none;
+}
+
+.head_left .list_cartegories {
+    font-size: 27px;
+    display: none;
+}
+.head_left ul li {
+    padding: 10px;
+}
+.head_left ul li a:hover {
+    color: rgb(172, 47, 51);
+}
+.head_left ul li a {
+    text-decoration: none;
+    color: black;
+}
+.list-item:hover .submenu {
+    visibility: visible;
+    top: 70px;
+}
+.submenu {
+    position: absolute;
+    width: 150px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    padding: 10px 0 10px 20px;
+    visibility: hidden;
+    top: 100px;
+    transition: 0.01s ease-out;
+}
+.list-icon .list-item:last-child ul {
+    width: 230px;
+}
+.list-icon .list-item:nth-child(3) ul {
+    width: 240px;
+}
+
+/* HEAD RIGHT */
+.head_right {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.head_right input {
+    height: 40px;
+    width: 230px;
+    padding: 0 8px 0 30px;
+}
+.head_right .icon-search {
+    position: absolute;
+    left: 0;
+    margin-left: 5px;
+}
+.head_right .icon ion-icon {
+    font-size: 20px;
+}
+.head_right span a {
+    text-decoration: none;
+    color: black;
+}
+.input-search:focus {
+    outline: none;
+}
+.head_right span {
+    margin-left: 15px;
+}
+
+.head_right span a:hover {
+    color: rgb(172, 47, 51);
+}
+.list-hide {
+    display: none;
+}
+/* CONTAINER */
+.container {
+    display: flex;
+    width: 100%;
+    height: 550px;
+}
+.left-container {
+    flex: 2;
+    padding: 30px;
+}
+.left-container ul li {
+    font-size: 18px;
+    padding-bottom: 15px;
+    cursor: pointer;
+}
+.left-container ul li span {
+    padding-right: 15px;
+}
+.right-container {
+    flex: 7;
+    padding: 30px;
+}
+.right-con.top {
+    background: #fff;
+    padding: 0 0 20px 0;
+    height: 50%;
+}
+.right-con.bot {
+    background: rgb(247, 248, 249);
+    padding: 0 0 20px 20px;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+}
+.right-con.top div {
+    display: flex;
+    background: rgb(247, 248, 249);
+    width: 50%;
+    padding: 20px;
+    flex-direction: column;
+}
+.right-con.bot div {
+    display: flex;
+    background: #fff;
+    width: 49%;
+    padding: 20px;
+    flex-direction: column;
+    justify-self: center;
+}
+
+.right-con div h3 {
+    padding-bottom: 20px;
+}
+.right-con.bot h3 {
+    padding: 20px 0;
+}
+
+/* FOOTER */
+.footer {
+    margin-top: 30px;
+    height: 500px;
+    width: 100%;
+    background: #ffff;
+    z-index: 1;
+    border-top: 1px solid;
+    display: flex;
+    flex-wrap: nowrap;
+}
+.footer-one {
+    flex: 1;
+    padding-top: 50px;
+    margin-left: 50px;
+}
+.footer li {
+    margin-top: 10px;
+}
+.footer-list-linked {
+    display: flex;
+}
+.footer-list-linked li {
+    padding-right: 50px;
+}
+.hotline {
+    width: 250px;
+    height: 50px;
+    background-color: #333;
+    border-radius: 15px 0 15px 0;
+    margin-left: 30px;
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.hotline h1 {
+    margin-left: 12px;
+    color: #fff;
+    text-align: center;
+}
+
+.footer-two {
+    flex: 1;
+    padding-top: 50px;
+    margin-left: 50px;
+}
+.footer-three {
+    flex: 1;
+    padding-top: 50px;
+    margin-left: 50px;
+}
+.footer-four {
+    flex: 1;
+    padding-top: 50px;
+    margin-left: 50px;
+}
+.support {
+    width: 250px;
+    height: 200px;
+    background-color: #fff;
+    border: 10px solid #e7e8e9;
+    border-radius: 50px 0 50px 0;
+    /* display: flex;
+  flex-direction: column; */
+}
+.support h1 {
+    margin-left: 10px;
+    margin-top: 10px;
+}
+.input {
+    margin-top: 20px;
+    padding-left: 20px;
+    width: 130px;
+    height: 50px;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: groove;
+}
+.input:focus {
+    outline: none;
+}
+.button {
+    width: 70px;
+    height: 50px;
+    border-radius: 30px 0 30px 0;
+    border-color: #e7e8e9;
+    margin-left: -4px;
+}
+.sidebarone {
+    height: auto;
+    flex: 1;
+    background-color: transparent;
+    font-size: 20px;
+}
+.sidebarone ul li {
+    padding-top: 20px;
+    padding-left: 20px;
+}
+.sidebarone ul li {
+    color: #333;
+    font-weight: 800;
+}
+.sidebarone li {
+    padding-top: 40px;
+    padding-left: 30px;
+}
+
+/* ------------------------------Footer----------------------- */
+
+/* Thanh Navbar danh cho điện thoại  */
+.navbar-phone {
+    height: 70px;
+    width: 100%;
+    display: flex;
+    background-color: #fff;
+    justify-content: space-around;
+    display: none;
+}
+.item-nav {
+    flex: 1;
+    width: auto;
+    height: auto;
+    margin: 0 5px;
+}
+.item-nav p {
+    color: #333;
+    text-align: center;
+}
+/* -----------------------------Mua Hang---------------------- */
+.input-shoping {
+    display: none;
+}
+
+/* -----------------------------reponsive----------------- */
+.moblie-list-icon {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    transform: translateX(-100%);
+}
+.nav-checkbox {
+    display: none;
+}
+.close svg {
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    top: 1.2rem;
+    right: 0.1rem;
+}
+.moblie-list-item {
+    margin-top: 20px;
+}
+
+/* Moblie width < 740px */
+@media only screen and (max-width: 740px) {
+    * {
+        font-size: 14px;
+    }
+    #toggle-button {
+        position: fixed;
+        bottom: 500px;
+        right: 10px;
+        height: 50px;
+        width: 50px;
+        border-radius: 100px;
+        border: none;
+        background-color: rgb(91, 223, 252);
+        text-align: center;
+        position: fixed;
+        bottom: 70px;
+        right: 10px;
+    }
+    #chat-header {
+        display: flex;
+        padding: 0 15px;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 5px;
+    }
+
+    .chat-head-right button {
+        width: 40px;
+        height: 40px;
+        outline: none;
+        border: none;
+        border-radius: 100px;
+        margin-top: 0px;
+        cursor: pointer;
+    }
+    .chat-head-right button ion-icon {
+        font-size: 23px;
+    }
+
+    .chat-container {
+        width: 300px;
+        height: 400px;
+        border: 1px solid #ccc;
+        display: none;
+        flex-direction: column;
+        background-color: #fff;
+        position: fixed;
+        bottom: 150px;
+        right: 10px;
+        padding-top: 10px;
+        border-radius: 10px;
+        border-bottom-style: hidden;
+    }
+
+    #chat-display {
+        flex-grow: 1;
+        overflow: hidden;
+        overflow-y: auto;
+        overflow-x: hidden;
+        border: none;
+        margin-bottom: 10px;
+        font-size: 20px;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+    }
+    #chat-display .message span {
+        display: table-cell;
+        word-break: break-word;
+        padding: 8px 12px;
+        text-align: start;
+    }
+
+    #chat-display .message {
+        display: table;
+        background: rgb(29, 118, 228);
+        border-radius: 18px;
+        margin: 15px 0 0 140px;
+        padding: 6 12px;
+        width: 240px;
+    }
+    #chat-display .mes-admin p {
+        word-break: break-word;
+        padding: 8px 12px;
+        text-align: start;
+    }
+
+    #chat-display .mes-admin {
+        background: rgb(29, 118, 228);
+        border-radius: 18px;
+        margin: 15px 0 0 12px;
+        padding: 6 12px;
+        width: 225px;
+    }
+
+    .icon-mes ion-icon {
+        color: #fff;
+        font-size: 30px;
+    }
+    .input-chat {
+        display: flex;
+        justify-content: space-between;
+        border-bottom-style: hidden;
+        width: 100%;
+    }
+
+    #user-input {
+        height: 30px;
+        margin-bottom: 5px;
+        flex: 1;
+        border: none;
+        outline: none;
+        font-size: 17px;
+        padding-left: 5px;
+    }
+
+    #send-button {
+        width: 50px;
+        outline: none;
+        border: none;
+        background: #fff;
+    }
+    #send-button span {
+        opacity: 0.5;
+    }
+    #send-button span ion-icon {
+        font-size: 25px;
+        color: rgb(0, 125, 242);
+        cursor: pointer;
+    }
+    .show {
+        display: flex;
+        z-index: 99;
+    }
+    /* head */
+    .head_right {
+        display: none;
+    }
+    .head_left .list_cartegories {
+        display: block;
+    }
+
+    .head_center * {
+        margin-right: 60px;
+    }
+    .footer {
+        flex-direction: column;
+    }
+    .navbar-phone {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #fff;
+        padding: 4px 0 0;
+        z-index: 999;
+    }
+    .item-nav p {
+        font-size: 10px;
+    }
+    .footer-four ul {
+        margin-bottom: 100px;
+    }
+    .nav-checkbox {
+        display: none;
+    }
+    .nav-checkbox:checked ~ .moblie-list-icon {
+        transform: translateX(0%);
+    }
+}
+
+/* Taplet width >= 740px and width < 1024px */
+@media only screen and (min-width: 741px) and (max-width: 1024px) {
+    .head_right {
+        display: none;
+    }
+    .head_left .list_cartegories {
+        display: block;
+    }
+
+    .head_center * {
+        margin-right: 60px;
+    }
+    .footer {
+        flex-direction: column;
+    }
+    .navbar-phone {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #fff;
+        padding: 4px 0 0;
+        z-index: 999;
+    }
+    .item-nav p {
+        font-size: 10px;
+    }
+    .footer-four ul {
+        margin-bottom: 100px;
+    }
+    .nav-checkbox {
+        display: none;
+    }
+    .nav-checkbox:checked ~ .moblie-list-icon {
+        transform: translateX(0%);
+    }
+}
