@@ -6,16 +6,25 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Address;
+use App\Models\Image;
 use Carbon\Carbon;
 
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display the specified resource.
      */
-    public function index()
+    public function showAll()
     {
-        //
+        $add = new Address();
+        $province = $add->getProvinces();
+        $district = $add->getAllDistricts();
+        $ward = $add->getAllWards();
+
+        $data = (new User)->showAll();
+
+        return view('admin.user.list', compact('data', 'province', 'district', 'ward'));
+        // return view('admin.user.list', compact('data'));
     }
 
     /**
@@ -115,9 +124,9 @@ class UserController extends Controller
                 $dateNow = Carbon::now('Asia/Ho_Chi_Minh')->format('H:i:s | d/m/Y');
                 $status = 0;
                 $token = "";
-                $province_id = $request->provinces;
-                $district_id = $request->districts;
-                $ward_id = $request->wards;
+                $province_id = $request->provinces != null ? $request->provinces : 0;
+                $district_id = $request->districts != null ? $request->districts : 1;
+                $ward_id = $request->wards != null ? $request->wards : 1;
 
                 $add = $user->insert($name, $username, $email, $pass, $address, $phone, $dateNow, $status, $token, $province_id, $district_id, $ward_id);
 
@@ -130,21 +139,7 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function showAll()
-    {
-        $add = new Address();
-        $province = $add->getProvinces();
-        $district = $add->getAllDistricts();
-        $ward = $add->getAllWards();
 
-        $data = (new User)->showAll();
-
-        return view('admin.user.list', compact('data', 'province', 'district', 'ward'));
-        // return view('admin.user.list', compact('data'));
-    }
 
     /**
      * Show the form for editing the specified resource.

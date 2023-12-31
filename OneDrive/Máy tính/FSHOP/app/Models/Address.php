@@ -35,12 +35,12 @@ class Address extends Model
 
     public function getAllDistricts()
     {
-        $sql = 'SELECT code,name,full_name FROM districts  ORDER BY name';
+        $sql = 'SELECT * FROM districts  ORDER BY code';
         return DB::select($sql);
     }
     public function getAllWards()
     {
-        $sql = 'SELECT code,name,full_name FROM wards  ORDER BY name';
+        $sql = 'SELECT * FROM wards  ORDER BY code';
         return DB::select($sql);
     }
     // eg: Bố Trach,...

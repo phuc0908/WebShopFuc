@@ -21,6 +21,12 @@ class Image extends Model
         return DB::select($sql, [$product_id]);
     }
     // Get all column Product ID
+    public function showAll()
+    {
+        $sql = 'SELECT * FROM image ';
+        return DB::select($sql);
+    }
+    // Get all column Product ID
     public function getOne($id)
     {
         $sql = 'SELECT * FROM image WHERE id = ?
@@ -53,7 +59,7 @@ class Image extends Model
         $sql = 'DELETE FROM image WHERE id = ?';
         return DB::delete($sql, [$id]);
     }
-    
+
     public function delAll($product_id)
     {
         $sql = 'DELETE FROM image WHERE product_id = ?';

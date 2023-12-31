@@ -80,7 +80,7 @@
 
             <li><a href="{{ route('client.index') }}">Trang Chủ</a></li>
             <ion-icon name="chevron-forward-outline"></ion-icon>
-            <li><a href="">Tất cả sản phẩm</a></li>
+            <li><a href="{{ route('client.allproduct') }}">Tất cả sản phẩm</a></li>
             <ion-icon name="chevron-forward-outline"></ion-icon>
             <li>
                 <a href="">{{$value->name}} </a>

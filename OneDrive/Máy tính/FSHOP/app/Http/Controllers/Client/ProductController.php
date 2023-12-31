@@ -62,11 +62,4 @@ class ProductController extends Controller
     public function get($id)
     {
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-    }
 }

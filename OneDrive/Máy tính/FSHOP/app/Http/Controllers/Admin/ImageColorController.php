@@ -13,14 +13,6 @@ use Carbon\Carbon;
 class ImageColorController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Show the form for creating a new resource.
      */
     public function create($image_id, $product_id)

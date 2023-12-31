@@ -9,13 +9,6 @@ use Carbon\Carbon;
 
 class SizeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
     public function showAll()
     {
         $data = (new Size)->showAll();
@@ -46,15 +39,6 @@ class SizeController extends Controller
 
         return redirect(route('admin.size.add'))->with('alertStore', 'Thêm thành công');
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
     /**
      * Show the form for editing the specified resource.
      */

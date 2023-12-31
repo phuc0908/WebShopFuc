@@ -73,33 +73,29 @@ class CartController extends Controller
         // Refresh session
         $list = $cart->list();
         unset($list[$product_id][$color_id][$size_id]);
-
         $cart->setList($list);
-        // dd($cart->list());
+
+        if ($this->listIsNULL($cart)) {
+            $cart->setList(null);
+        }
         return redirect()->back();
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function listIsNULL(Cart $cart)
     {
-        //
-    }
+        $count = 0;
+        $list = $cart->list();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
+        foreach ($list as $aproduct) {
+            foreach ($aproduct as $acolor) {
+                if ($acolor !== null) {
+                    $count++;
+                }
+            }
+        }
+        if ($count == 0) {
+            return false;
+        }
+        return true;
     }
 }

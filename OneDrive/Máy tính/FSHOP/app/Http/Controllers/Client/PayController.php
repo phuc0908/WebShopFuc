@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Cartegory;
 use App\Models\User;
 use App\Helpers\Cart;
+use App\Http\Controllers\Client\OrderController as ClientOrderController;
 use Carbon\Carbon;
 
 class PayController extends Controller
@@ -44,9 +45,14 @@ class PayController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function pay()
+    public function pay(Request $request, Cart $cart)
     {
-        return view('client.pay');
+        $datas = $this->getCate();
+        // add Order
+        $order = new ClientOrderController();
+        $order->store($request, $cart);
+
+        return redirect(route('client.myOrder'));
     }
 
     /**
@@ -62,44 +68,5 @@ class PayController extends Controller
         $datenow =  Carbon::now('Asia/Ho_Chi_Minh')->addDay(7)->format(' d/m/Y');
 
         return view('client.pagePurched', compact('datas', 'inforMySelf', 'datenow', 'total_quantity', 'total_price'));
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

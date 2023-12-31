@@ -20,7 +20,6 @@
         margin-bottom: 15px;
     }
 
-
     /* The close button */
     .closebtn {
         margin-left: 15px;
@@ -36,6 +35,11 @@
     /* When moving the mouse over the close button */
     .closebtn:hover {
         color: black;
+    }
+
+    span.error {
+        color: #f44336;
+        position: absolute;
     }
 </style>
 <section class="container">
@@ -72,66 +76,125 @@
             <div class="container-signin">
                 <div class="infor_customer">
                     <label for="">Họ</label> <br />
-                    <input type="text" name="lastName" id="" placeholder="Họ..." />
+                    <input type="text" name="lastName" id="" placeholder="Họ..." value="{{ old('lastName') }}" /><br>
+                    <span class="error">
+                        @error('lastName')
+                        {{$message}}
+                        @enderror
+                    </span>
                 </div>
 
                 <div class="infor_customer">
                     <label for="">Tên</label> <br />
-                    <input type="text" name="firstName" id="" placeholder="Tên..." />
+                    <input type="text" name="firstName" id="" placeholder="Tên..." value="{{ old('firstName') }}" /><br>
+                    <span class="error">
+                        @error('firstName')
+                        {{$message}}
+                        @enderror
+                    </span>
                 </div>
 
                 <div class="infor_customer">
                     <label for="">Email</label> <br />
-                    <input type="email" name="email" id="" placeholder="Email..." />
+                    <input type="text" name="email" id="" placeholder="Email..." value="{{ old('email') }}" /><br>
+                    <span class="error">
+                        @error('email')
+                        {{$message}}
+                        @enderror
+                    </span>
                 </div>
 
                 <div class="infor_customer">
                     <label for="">Điện Thoại</label> <br />
-                    <input type="text" name="phone" id="" placeholder="Số điện thoại..." />
+                    <input type="text" name="phone" id="" placeholder="Số điện thoại..." value="{{ old('phone') }}" /><br>
+                    <span class="error">
+                        @error('phone')
+                        {{$message}}
+                        @enderror
+                    </span>
                 </div>
 
                 <div class="infor_customer">
                     <label for="">Tỉnh/TP</label> <br />
                     <select name="provinces" id="provinces">
+                        <option selected disabled value="">-------</option>
                         @if(!empty($provinces))
                         @foreach($provinces as $v)
                         <option value="{{$v->code}}">{{$v->name}}</option>
                         @endforeach
                         @endif
-                    </select>
+                    </select><br>
+                    <span class="error">
+                        @error('provinces')
+                        {{$message}}
+                        @enderror
+                    </span>
                 </div>
 
                 <div class="infor_customer">
                     <label for="">Quận/Huyện</label><br />
-                    <select name="districts" id="districts"></select>
+                    <select name="districts" id="districts">
+                        <option selected disabled value="">-------</option>
+                    </select><br>
+                    <span class="error">
+                        @error('districts')
+                        {{$message}}
+                        @enderror
+                    </span>
                 </div>
 
                 <div class="infor_customer">
                     <label for="">Phường/Xã</label><br />
                     <select name="wards" id="wards">
-
-                    </select>
+                        <option selected disabled value="">-------</option>
+                    </select><br>
+                    <span class="error">
+                        @error('wards')
+                        {{$message}}
+                        @enderror
+                    </span>
                 </div>
 
                 <div class="infor_customer">
                     <label for="">Địa Chỉ</label><br />
-                    <input type="text" name="address" id="" placeholder="Địa chỉ..." />
+                    <input type="text" name="address" id="" placeholder="Địa chỉ..." value="{{ old('address') }}" /><br>
+                    <span class="error">
+                        @error('address')
+                        {{$message}}
+                        @enderror
+                    </span>
                 </div>
             </div>
 
             <div class="container-signup">
                 <div class="password_customer">
                     <label for="">User Name</label> <br />
-                    <input type="text" name="username" id="" placeholder="Tên đăng nhập...." />
+                    <input type="text" name="username" id="" placeholder="Tên đăng nhập...." value="{{ old('username') }}" /><br>
+                    <span class="error">
+                        @error('username')
+                        {{$message}}
+                        @enderror
+                    </span>
                 </div>
+
                 <div class="password_customer">
                     <label for="">Mật Khẩu</label> <br />
-                    <input type="text" name="pass" id="" placeholder="Mật Khẩu...." />
+                    <input type="password" name="pass" id="" placeholder="Mật Khẩu...." value="{{ old('pass') }}" /><br>
+                    <span class="error">
+                        @error('pass')
+                        {{$message}}
+                        @enderror
+                    </span>
                 </div>
 
                 <div class="password_customer">
                     <label for="">Nhập Lại Mật Khẩu</label> <br />
-                    <input type="text" name="re_pass" id="" placeholder="Nhập Lại Mật Khẩu...." />
+                    <input type="password" name="re_pass" id="" placeholder="Nhập Lại Mật Khẩu...." value="{{ old('re_pass') }}" /><br>
+                    <span class="error">
+                        @error('re_pass')
+                        {{$message}}
+                        @enderror
+                    </span>
                 </div>
 
 
@@ -147,54 +210,67 @@
     </div>
 </section>
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <script>
-    // $.ajaxSetup({
-    //     headers: {
-    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //     }
-    // })
-    $("#provinces").change(function() {
-        var province_code = $(this).val();
+    $(document).ready(function() {
+        // $.ajaxSetup({
+        //     headers: {
+        //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //     }
+        // })
+        $("#provinces").change(function() {
+            var province_code = $(this).val();
 
-        $.ajax({
-            type: 'get',
-            url: '/showDistricts/' + province_code,
-            dataType: 'json',
-            success: function(data) {
-                $("#wards").html('');
-                $("#districts").html('');
-                $.each(data, function(key, value) {
+            $.ajax({
+                type: 'get',
+                url: '/showDistricts/' + province_code,
+                dataType: 'json',
+
+                success: function(data) {
+                    $("#wards").html('');
+                    $("#districts").html('');
+
                     $("#districts").append(
-                        "<option value=" + value.code + ">" + value.name + "</option>"
+                        "<option selected disabled value=''>-------</option>"
                     );
-                });
-
-            },
-            error: function(data) {
-                console.log('Error:', data);
-            }
-        });
-    });
-    $("#districts").change(function() {
-        var district_code = $(this).val();
-
-        $.ajax({
-            type: 'get',
-            url: 'showWards/' + district_code,
-            dataType: 'json',
-            success: function(data) {
-                $("#wards").html('');
-                $.each(data, function(key, value) {
                     $("#wards").append(
-                        "<option value=" + value.code + ">" + value.name + "</option>"
+                        "<option selected disabled value=''>-------</option>"
                     );
-                });
-            },
-            error: function(data) {
-                console.log('Error:', data);
-            }
+                    $.each(data, function(key, value) {
+                        $("#districts").append(
+                            "<option value=" + value.code + ">" + value.name + "</option>"
+                        );
+                    });
+                },
+                error: function(data) {
+                    console.log('Error:', data);
+                }
+            });
+        });
+        $("#districts").change(function() {
+            var district_code = $(this).val();
+
+            $.ajax({
+                type: 'get',
+                url: '/showWards/' + district_code,
+                dataType: 'json',
+                success: function(data) {
+                    $("#wards").html('');
+
+                    $("#wards").append(
+                        "<option selected disabled value=''>-------</option>"
+                    );
+                    $.each(data, function(key, value) {
+                        $("#wards").append(
+                            "<option value=" + value.code + ">" + value.name + "</option>"
+                        );
+                    });
+                },
+                error: function(data) {
+                    console.log('Error:', data);
+                }
+            });
         });
     });
 </script>

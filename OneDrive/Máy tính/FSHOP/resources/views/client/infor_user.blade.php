@@ -21,12 +21,15 @@
         background: gray;
     }
 </style>
-<section class="container" style="padding: 120px 0 0 0;height: 640px;">
+<section class="container" style="padding: 120px 0 0 0;height: 690px;">
     <div class="left-container">
         <ul>
             <li style="font-weight: bold">
                 <span><ion-icon name="person-circle"></ion-icon></span>Thông tin
                 tài khoản
+            </li>
+            <li style="font-weight: 100">
+                <a href="{{route('client.myOrder')}}"><span><ion-icon name="cart"></ion-icon></span>Đơn hàng của bạn</a>
             </li>
             <li>
                 <form action="{{route('client.auth.logout')}}" method="post">

@@ -12,13 +12,6 @@ use GuzzleHttp\Psr7\Response;
 
 class CartegoryController extends Controller
 {
-
-
-    public function index()
-    {
-        //
-    }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -117,7 +110,6 @@ class CartegoryController extends Controller
         (new Cartegory)->del($id);
         return redirect()->back()->with('alertDelete', 'Xóa thành công');
     }
-    // CLIENT CLIENT CLIENT CLIENT CLIENT CLIENT CLIENT CLIENT CLIENT CLIENT
-    // CLIENT CLIENT CLIENT CLIENT CLIENT CLIENT CLIENT CLIENT CLIENT CLIENT
+
 
 }

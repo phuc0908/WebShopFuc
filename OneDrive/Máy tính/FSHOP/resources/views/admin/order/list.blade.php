@@ -47,17 +47,20 @@
                         <th>Trạng Thái</th>
                         <th>Tùy Biến</th>
                     </tr>
-
+                    @if(!empty($data))
+                    @foreach ($data as $key => $value)
                     <tr>
-                        <td>1</td>
-                        <td><a href="">F_SHOP_1</a></td>
-                        <td>Phúc</td>
-                        <td>Quảng Bình</td>
-                        <td>20/11/2023</td>
-                        <td>199.999 đ</td>
+                        <td>{{$key}}</td>
+                        <td><a href="">F_SHOP_{{$value->id}}</a></td>
+                        <td>{{$value->name}}</td>
+                        <td>{{$value->address}}</td>
+                        <td>{{$value->created_at}}</td>
+                        <td>{{number_format($value->total)}} VND</td>
                         <td>Đang chờ xác nhận</td>
                         <td>Sửa | Xóa</td>
                     </tr>
+                    @endforeach
+                    @endif
 
                 </table>
             </div>

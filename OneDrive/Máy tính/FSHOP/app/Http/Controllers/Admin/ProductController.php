@@ -11,17 +11,6 @@ use Carbon\Carbon;
 
 class ProductController extends Controller
 {
-    public function __construct()
-    {
-    }
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -70,6 +59,7 @@ class ProductController extends Controller
     public function showAll()
     {
         $data = (new Product)->showAll();
+
         return view('admin.product.list', compact('data'));
     }
     public function get($id)

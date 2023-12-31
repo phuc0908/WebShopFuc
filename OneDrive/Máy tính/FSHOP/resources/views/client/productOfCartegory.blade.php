@@ -38,11 +38,11 @@
         <ul>
             <li><a href="{{ route('client.index') }}">Trang Chủ</a></li>
             <ion-icon name="chevron-forward-outline"></ion-icon>
-            <li><a href="product_all.php">Tất cả sản phẩm</a></li>
+            <li><a href="{{ route('client.allproduct') }}">Tất cả sản phẩm</a></li>
             <ion-icon name="chevron-forward-outline"></ion-icon>
             @if(!empty($cate_name))
             <li>
-                <a Áo href="index.php">
+                <a Áo href="#">
                     {{$cate_name}}
                 </a>
             </li>

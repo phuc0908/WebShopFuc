@@ -8,40 +8,55 @@ use Illuminate\Support\Facades\DB;
 
 class Order extends Model
 {
-    public function __construct()
+    public function getLastedOrder()
     {
+        $sql = "SELECT * FROM orders ORDER BY id DESC LIMIT 1";
+        return DB::select($sql);
     }
     // Get all column 
     public static function showAll()
     {
-        $sql = 'SELECT * FROM orders';
+        $sql = 'SELECT o.id, u.name, o.address, o.created_at, o.total, o.state 
+        FROM orders o
+        INNER JOIN users u ON o.user_id = u.id
+        ';
         return DB::select($sql);
     }
-    // Get all column 
-    public static function showDetail($order_id)
+    public static function get($idUser)
     {
-        $sql = 'SELECT * FROM detail_order WHERE order_id = ?';
-        return DB::select($sql, [$order_id]);
+        $sql = 'SELECT * FROM orders WHERE user_id = ?';
+        return DB::select($sql, [$idUser]);
     }
 
+
     // INSERT
-    public function insert()
+    public function insert($user_id, $address, $created_at, $state, $total)
     {
 
-        $sql = 'INSERT INTO cartegories (user_id,address,created_at,state,total) VALUES (?,?,?,?,?) ';
-        $arr = [];
+        $sql = 'INSERT INTO orders (user_id,address,created_at,state,total) VALUES (?,?,?,?,?) ';
+        $arr = [$user_id, $address, $created_at, $state, $total];
         return DB::insert($sql, $arr);
     }
     // UPDATE
-    public function edit($id, $name, $slug, $parent_id)
+    public function upd($id, $user_id, $address, $created_at, $state, $total)
     {
-        // $sql = 'UPDATE categories 
-        //         SET     name = ?,
-        //                 slug = ?,
-        //                 parent_id = ?,
-        //         WHERE id = ?  ';
-        // $arr = [$name, $slug, $parent_id, $id];
-        // return DB::select($sql);
+        $sql = 'UPDATE orders 
+                SET     user_id = ?,
+                        address = ?, 
+                        created_at = ?,
+                        state = ?,
+                        total = ?
+                WHERE id = ?  ';
+        $arr = [$user_id, $address, $created_at, $state, $total, $id];
+        return DB::update($sql, $arr);
+    }
+    public function updateTotalPrice($id, $total)
+    {
+        $sql = 'UPDATE orders 
+                SET total = ?
+                WHERE id = ?  ';
+        $arr = [$total, $id];
+        return DB::update($sql, $arr);
     }
     // DELETE
     public function del($id)

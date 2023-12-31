@@ -14,7 +14,8 @@
     <h1 style="font-weight: 900; margin-bottom: 30px; margin-left: 30px">
         Đặt Hàng
     </h1>
-    <div class="center-container">
+    <form class="center-container" method="post" action="{{route('client.payOrder')}}">
+        @csrf
         <div class="purched">
             <div class="infor_purched">
                 <div class="address_ship">
@@ -37,6 +38,7 @@
                             <p>
                                 Đia Chỉ :{{$inforMySelf->address." / ".$inforMySelf->nameWard." / ".$inforMySelf->nameDistrict." / ".$inforMySelf->nameProvince}}
                             </p>
+                            <input type="hidden" name="address" value="{{$inforMySelf->address." / ".$inforMySelf->nameWard." / ".$inforMySelf->nameDistrict." / ".$inforMySelf->nameProvince}}">
                         </li>
                     </ul>
 
@@ -144,15 +146,15 @@
                 </div>
             </div>
 
-            <div class="btn-order">
-                <a href="{{route('client.payOrder')}}">
+            <div class="btn-order" style="padding: 0;">
+                <button type="submit" style="width: 100%;background-color: rgb(51, 51, 51);border: none;color:aliceblue;cursor: pointer;height: 100%;">
                     <h1>Đặt Hàng</h1>
-                </a>
+                </button>
             </div>
         </div>
-    </div>
+    </form>
     @else
-    <div style="height: 400px; display: flex;justify-content: center; align-items: center;">Bạn chưa đăng nhập</div>
+    <div style="height: 400px; display: flex;justify-content: center; align-items: center;">Bạn chưa đăng nhập hoặc chưa có sản phẩm trong giỏ hàng</div>
     @endif
 </section>
 

@@ -18,6 +18,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\PayController;
+use App\Http\Controllers\Client\OrderController as OrderClient;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,6 +40,8 @@ Route::middleware('client.check')->prefix("")->group(function () {
     Route::get('index', [HomeController::class, "create"]);
 
     Route::get('danh-muc/{slug?}', [HomeController::class, "show"])->name('client.getCartegory');
+
+    Route::get('all-product', [HomeController::class, "getAllProduct"])->name('client.allproduct');
     // CLIENT
     // Cart
     Route::prefix("cart")->group(function () {
@@ -49,7 +52,7 @@ Route::middleware('client.check')->prefix("")->group(function () {
     });
     // payment
     Route::get('purched', [PayController::class, "create"])->name("client.pay");
-    Route::get('payOrder', [PayController::class, "pay"])->name("client.payOrder");
+    Route::post('purched', [PayController::class, "pay"])->name("client.payOrder");
     // Product
     Route::prefix("product")->group(function () {
 
@@ -72,6 +75,8 @@ Route::middleware('client.check')->prefix("")->group(function () {
     // Infor_User
     Route::get('infor', [AuthController::class, 'didSignIn'])
         ->name('client.auth.infor');
+    Route::get('my-order', [OrderClient::class, 'create'])
+        ->name('client.myOrder');
     Route::post('infor', [AuthController::class, 'logout'])
         ->name("client.auth.logout");
 

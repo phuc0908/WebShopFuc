@@ -70,6 +70,25 @@ class AuthController extends Controller
     // SIGN IN 
     public function create(Request $request)
     {
+        $validatedData = $request->validate(
+            [
+                'username' => ['required', 'min:6'],
+                'password' => ['required', 'min:8', 'max:20', 'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%@^&*]).*$/'],
+            ],
+            [
+                // REQUIRED
+                'username.required' => 'Bạn chưa điền vào ô trống',
+                'password.required' => 'Bạn chưa điền vào ô trống',
+
+                // MIN
+                'username.min' => 'Phải tối thiểu 6 kí tự',
+                'password.min' => 'Phải tối thiểu 8 kí tự',
+                // MAX
+                'password.max' => 'Tối đa chỉ được 12 kí tự',
+                // REGEX
+                'password.regex' => 'Phải gồm ít nhất 1 chữ cái, 1 chữ số [0->9] và 1 kí tự đặc biệt [!,$,#,%,@,^,&,*]',
+            ]
+        );
         $name = $request->username;
         $pass = $request->password;
         $datas = (new User)->showAll();
@@ -123,6 +142,48 @@ class AuthController extends Controller
 
     public function store(Request $request)
     {
+        $validatedData = $request->validate(
+            [
+                'lastName' => ['required'],
+                'firstName' => ['required'],
+                'username' => ['required', 'min:6'],
+                'email' => ['required', 'email'],
+                'phone' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:10', 'max:11'],
+                'address' => ['required'],
+                'provinces' => ['required'],
+                'districts' => ['required'],
+                'wards' => ['required'],
+                'pass' => ['required', 'min:8', 'max:20', 'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%@^&*]).*$/'],
+                're_pass' => ['required', 'same:pass'],
+            ],
+            [
+                // REQUIRED
+                'username.required' => 'Bạn chưa điền vào ô trống',
+                'pass.required' => 'Bạn chưa điền vào ô trống',
+                're_pass.required' => 'Bạn chưa điền vào ô trống',
+                'email.required' => 'Bạn chưa điền vào ô trống',
+                'firstName.required' => 'Bạn chưa điền vào ô trống',
+                'lastName.required' => 'Bạn chưa điền vào ô trống',
+                'phone.required' => 'Bạn chưa điền vào ô trống',
+                'address.required' => 'Bạn chưa điền vào ô trống',
+                'provinces.required' => 'Bạn chưa chọn option nào',
+                'districts.required' => 'Bạn chưa chọn option nào',
+                'wards.required' => 'Bạn chưa chọn option nào',
+
+                // MIN
+                'username.min' => 'Phải tối thiểu 6 kí tự',
+                'pass.min' => 'Phải tối thiểu 8 kí tự',
+                'phone.min' => 'Phải tối thiểu 10 số',
+                // MAX
+                'pass.max' => 'Tối đa chỉ được 12 kí tự',
+                'phone.max' => 'Tối đa chỉ được 11 số',
+                // REGEX
+                'pass.regex' => 'Phải gồm ít nhất 1 chữ cái, 1 chữ số [0->9] và 1 kí tự đặc biệt [!,$,#,%,@,^,&,*]',
+                'phone.regex' => 'Số điện thoại chỉ được chứa các chữ số',
+                'email.email' => 'Email của bạn chưa đúng cú pháp',
+            ]
+        );
+
         if ($this->checkSignUp($request)) {
             $name = $request->lastName . " " . $request->firstName;
             $username = $request->username;
@@ -142,37 +203,5 @@ class AuthController extends Controller
         } else {
             return redirect()->route("client.auth.signup")->with("alertSignUpErr", "Đăng ký không thành công, Bạn cần kiểm tra lại email, tên đăng nhập, mật khẩu");
         }
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

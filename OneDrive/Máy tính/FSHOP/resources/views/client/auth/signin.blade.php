@@ -38,6 +38,12 @@
     .closebtn:hover {
         color: black;
     }
+
+    span.error {
+        color: #f44336;
+        position: absolute;
+        bottom: -25px;
+    }
 </style>
 
 <section class="container">
@@ -77,11 +83,25 @@
                     điểm thành viên và nhận được những ưu đãi tốt hơn!
                 </p>
                 <div style="display: flex; flex-direction: column">
-                    <input type="text" name="username" id="" class="input-phone" placeholder="User Name hoặc Email" />
+                    <div style="width: 100%;position: relative;">
+                        <input type="text" name="username" id="" class="input-phone" placeholder="User Name hoặc Email" /><br>
+                        <span class="error">
+                            @error('username')
+                            {{$message}}
+                            @enderror
+                        </span>
+                    </div>
+                    <div style="position: relative;">
+                        <input type="password" name="password" id="" class="input-password" placeholder="Mật Khẩu" /><br>
+                        <span class="error">
+                            @error('password')
+                            {{$message}}
+                            @enderror
+                        </span>
+                    </div>
 
-                    <input type="text" name="password" id="" class="input-password" placeholder="Mật Khẩu" />
                 </div>
-                <input type="checkbox" name="" id="" />
+                <input type="checkbox" name="rememberpass" id="rememberpass" />
                 <label for="">Ghi Nhớ Đăng Nhập</label>
                 <div class="btn-signin">
                     <a href="">Quên Mật Khẩu</a>

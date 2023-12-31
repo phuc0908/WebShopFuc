@@ -19,11 +19,7 @@ class CheckAdmin
         if (session('name') === 'admin') {
             if (session('pass') === 'admin') {
                 return $next($request);
-            } else {
-                return back()->withInput();
             }
-        } else {
-            return back()->withInput();
         }
     }
 }
