@@ -1,6 +1,9 @@
    <div class="admin-container-left" style="position: fixed; top: 90px; left: 0">
        <ul>
            <li>
+               <a href="{{ route('admin.home') }}">TRANG THỐNG KÊ</a>
+           </li>
+           <li>
                <a href="#">Danh Mục</a>
                <ul>
                    <li><a href="{{ route('admin.cartegory.add') }}">Thêm Danh Mục</a></li>

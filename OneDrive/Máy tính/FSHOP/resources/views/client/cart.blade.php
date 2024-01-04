@@ -103,6 +103,12 @@
                 <div class="cart-product">
                     <h1 style="margin: 0 0 30px 0;">Tóm Tắt Đơn Hàng</h1>
                     <div>
+                        <p>Số loại sản phẩm</p>
+                        @if(!empty($total_type))
+                        <p>{{$total_type}}</p>
+                        @endif
+                    </div>
+                    <div>
                         <p>Tổng sản phẩm</p>
                         @if(!empty($total_quantity))
                         <p>{{$total_quantity}}</p>

@@ -24,7 +24,12 @@ class Order extends Model
     }
     public static function get($idUser)
     {
-        $sql = 'SELECT * FROM orders WHERE user_id = ?';
+        $sql = 'SELECT o.id, COUNT(do.id) AS numberProductInOrder, o.state , o.total
+                FROM orders o
+                LEFT JOIN details_order do ON o.id = do.order_id 
+                WHERE o.user_id = ?
+                GROUP BY o.id;
+        ';
         return DB::select($sql, [$idUser]);
     }
 
@@ -57,6 +62,13 @@ class Order extends Model
                 WHERE id = ?  ';
         $arr = [$total, $id];
         return DB::update($sql, $arr);
+    }
+    public function updateState($id, $state)
+    {
+        $sql = 'UPDATE orders 
+                SET state = ?
+                WHERE id = ?  ';
+        return DB::update($sql, [$state, $id]);
     }
     // DELETE
     public function del($id)

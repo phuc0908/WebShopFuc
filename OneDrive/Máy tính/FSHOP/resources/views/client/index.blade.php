@@ -41,7 +41,7 @@
                 <p>
                     <span>{{$value->name}}</span>
                     <br />
-                    <span class="price"> {{ number_format($value->price_final) }} VND</span>
+                    <span class="price">{{ number_format($value->price_final) }} VND</span>
                 </p>
             </a>
         </div>

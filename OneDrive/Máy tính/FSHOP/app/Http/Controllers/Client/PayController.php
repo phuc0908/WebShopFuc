@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Cartegory;
 use App\Models\User;
 use App\Helpers\Cart;
+use App\Models\Address;
 use App\Http\Controllers\Client\OrderController as ClientOrderController;
 use Carbon\Carbon;
 
@@ -60,6 +61,9 @@ class PayController extends Controller
      */
     public function create(Cart $cart)
     {
+        $address = new Address();
+        $provinces = $address->getProvinces();
+
         $total_quantity = $cart->getTotalQuantity();
         $total_price = $cart->getTotalPrice();
 
@@ -67,6 +71,6 @@ class PayController extends Controller
         $inforMySelf = $this->getMySelf();
         $datenow =  Carbon::now('Asia/Ho_Chi_Minh')->addDay(7)->format(' d/m/Y');
 
-        return view('client.pagePurched', compact('datas', 'inforMySelf', 'datenow', 'total_quantity', 'total_price'));
+        return view('client.pagePurched', compact('datas', 'inforMySelf', 'datenow', 'total_quantity', 'total_price', 'provinces'));
     }
 }

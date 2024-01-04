@@ -11,12 +11,13 @@ use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\ProductSizeController;
 use App\Http\Controllers\Admin\ProductColorController;
 use App\Http\Controllers\Admin\ImageColorController;
+use App\Http\Controllers\Admin\HomeController;
 // 
 use App\Http\Controllers\Client\ProductController as ProductClient;
 // 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Client\CartController;
-use App\Http\Controllers\Client\HomeController;
+use App\Http\Controllers\Client\HomeController as HomeClient;
 use App\Http\Controllers\Client\PayController;
 use App\Http\Controllers\Client\OrderController as OrderClient;
 use Illuminate\Support\Facades\Route;
@@ -35,13 +36,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('client.check')->prefix("")->group(function () {
 
-    Route::get('', [HomeController::class, "create"])
+    Route::get('', [HomeClient::class, "create"])
         ->name("client.index");
-    Route::get('index', [HomeController::class, "create"]);
+    Route::get('index', [HomeClient::class, "create"]);
 
-    Route::get('danh-muc/{slug?}', [HomeController::class, "show"])->name('client.getCartegory');
+    Route::get('danh-muc/{slug?}', [HomeClient::class, "show"])->name('client.getCartegory');
 
-    Route::get('all-product', [HomeController::class, "getAllProduct"])->name('client.allproduct');
+    Route::get('all-product', [HomeClient::class, "getAllProduct"])->name('client.allproduct');
     // CLIENT
     // Cart
     Route::prefix("cart")->group(function () {
@@ -52,6 +53,7 @@ Route::middleware('client.check')->prefix("")->group(function () {
     });
     // payment
     Route::get('purched', [PayController::class, "create"])->name("client.pay");
+    
     Route::post('purched', [PayController::class, "pay"])->name("client.payOrder");
     // Product
     Route::prefix("product")->group(function () {
@@ -102,6 +104,13 @@ Route::prefix("admin")->group(function () {
 
 
     //MANAGE User
+    Route::middleware('admin.check')
+        ->prefix("home")
+        ->group(function () {
+            // Add
+            Route::get('', [HomeController::class, 'index'])
+                ->name('admin.home');
+        });
     Route::middleware('admin.check')
         ->prefix("user")
         ->group(function () {
@@ -256,15 +265,24 @@ Route::prefix("admin")->group(function () {
             // Show
             Route::get('list', [OrderController::class, 'showAll'])
                 ->name('admin.order.list');
-            // Detail
-            Route::get('detail/{id}', [OrderController::class, 'show'])
-                ->name('admin.order.detail');
             // Update
             Route::get('edit/{id}', [OrderController::class, 'edit'])
                 ->name('admin.order.edit');
             // Delete
             Route::get('destroy/{id}', [OrderController::class, 'destroy'])
                 ->name('admin.order.destroy');
+            // State
+            Route::get('state/{id}/{state}', [OrderController::class, 'updateState'])
+                ->name('admin.order.state');
+            // DETAIL
+            Route::prefix("detail")
+                ->group(function () {
+                    Route::get('{idorder}', [OrderController::class, 'showDetaiOrder'])
+                        ->name('admin.order.detail');
+
+                    Route::get('detail/{idorder?}/detroy/{id}', [OrderController::class, 'detroyDetail'])
+                        ->name('admin.order.detail.destroy');
+                });
         });
     // MANAGE Sizes
     Route::middleware('admin.check')

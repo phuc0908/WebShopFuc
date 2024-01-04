@@ -26,13 +26,25 @@ class Cart
     {
         return $this->items;
     }
+    public function getTotalTypeProduct()
+    {
+        $total_type = 0;
+        foreach ($this->list() as $product) {
+            foreach ($product as $color) {
+                foreach ($color as $size) {
+                    $total_type++;
+                }
+            }
+        }
+        return $total_type;
+    }
     public function getTotalQuantity()
     {
         $total_quantity = 0;
         foreach ($this->list() as $product) {
             foreach ($product as $color) {
                 foreach ($color as $size) {
-                    $total_quantity++;
+                    $total_quantity += $size['quantity'];
                 }
             }
         }

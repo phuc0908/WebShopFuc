@@ -39,9 +39,10 @@ class CartController extends Controller
     {
         $list = $cart->list();
         $total_quantity = $cart->getTotalQuantity();
+        $total_type = $cart->getTotalTypeProduct();
         $total_price = $cart->getTotalPrice();
         $datas = $this->getCate();
-        return view('client.cart', compact('datas', 'list', 'total_quantity', 'total_price'));
+        return view('client.cart', compact('datas', 'list', 'total_quantity', 'total_price', 'total_type'));
     }
 
     /**
@@ -88,14 +89,14 @@ class CartController extends Controller
 
         foreach ($list as $aproduct) {
             foreach ($aproduct as $acolor) {
-                if ($acolor !== null) {
+                if ($acolor != null) {
                     $count++;
                 }
             }
         }
         if ($count == 0) {
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 }

@@ -119,8 +119,8 @@
                 <span>(0 Đánh Giá)</span>
             </p>
             <h2>
-                <span class="price">{{ number_format($value->price_final,3) }} VND</span>
-                <strike class="price" style="font-size: 16px">{{ number_format($value->price,3) }} VND</strike>
+                <span class="price">{{ number_format($value->price_final) }} VND</span>
+                <strike class="price" style="font-size: 16px">{{ number_format($value->price) }} VND</strike>
 
             </h2>
 
@@ -156,9 +156,11 @@
             <div class="buttons_added">
                 <label for="" style="margin: 3px 8px 0 0">Số Lượng</label>
                 <input class="minus is-form" type="button" value="-" />
-                <input aria-label="quantity" class="input-qty" name="quantity" type="number" value="1" max="20" min="1" />
-                <input class="plus is-form" type="button" value="+" />
+                <input class="input-qty" name="quantity" type="number" value="1" max="{{$value->amount}}" min="1" />
+                <input class="plus is-form" type="button" value="+" /><br>
+
             </div>
+            <span style="margin: -20px 0 0 0;">Kho: {{$value->amount}}</span>
 
             <div class="trade">
                 <button type="submit" class="add">

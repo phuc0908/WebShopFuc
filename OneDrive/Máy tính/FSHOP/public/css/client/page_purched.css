@@ -265,6 +265,67 @@ header img {
     font-size: 30px;
     text-align: center;
 }
+.jus {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    flex-wrap: wrap;
+}
+/* NEW */
+.infor_customer {
+    margin: 10px;
+}
+
+.infor_customer select {
+    width: 160px;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.infor_customer input {
+    width: 480px;
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.infor_customer input:focus {
+    outline: none;
+}
+
+.infor_customer .select_item {
+    width: 580px;
+}
+
+.form-li {
+    border: 1px solid #cccc;
+    padding: 20px 0 20px 20px;
+    margin: 15px;
+    border-radius: 4px;
+}
+
+/* FORM ADDRESS */
+.selectAddress {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid #cccc;
+    padding: 20px 0 20px 20px;
+    margin: 15px;
+    border-radius: 4px;
+}
+
+.offEventPointer {
+    display: none;
+}
+
+.onEventPointer {
+    display: flex;
+}
 /* ---------------------------footer------------------ */
 .footer {
     margin-top: 30px;

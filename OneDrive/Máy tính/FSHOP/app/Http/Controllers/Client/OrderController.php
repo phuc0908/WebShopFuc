@@ -51,6 +51,7 @@ class OrderController extends Controller
                 $datas[$order->id]['details'][$detail->id] = $detail;
             }
         }
+        // dd($datas);
         return $datas;
     }
     /**
@@ -102,7 +103,7 @@ class OrderController extends Controller
                     }
                 }
             }
-            // $isUpdatedPrice = $order->updateTotalPrice($order_id, $totalPrice);
+            $isUpdatedPrice = $order->updateTotalPrice($order_id, $totalPrice);
         } else {
             echo "Error";
         }

@@ -16,7 +16,7 @@ class DetailOrder extends Model
     }
     public static function get($idOrder)
     {
-        $sql = 'SELECT d.id, p.name as nameProduct, d.price, d.amount, d.created_at, c.name as nameColor, s.name as nameSize
+        $sql = 'SELECT d.id, p.name as nameProduct, p.img, d.price, d.amount, d.created_at, c.name as nameColor, s.name as nameSize
         FROM details_order d
         INNER JOIN products p ON d.product_id = p.id 
         INNER JOIN colors c ON d.color_id = c.id 

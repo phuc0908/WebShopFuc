@@ -1,68 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
+@include('admin.layouts.header')
 
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/admin/style.css" />
+<h1>Danh Sách Sản Phẩm Trong Đơn Hàng</h1>
+</header>
+<section class="admin-container">
 
-    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-</head>
+    @include('admin.layouts.sideBar')
 
-<body>
+    <style>
+        td {
+            white-space: nowrap;
+        }
 
-    <header style="position: fixed;
-          top: 0;
-          left: 0;
-          z-index: 99;
-          background-color: gray;">
-        <h1>Danh Sách Đơn Hàng</h1>
-    </header>
-    <section class="admin-container">
-        @include('admin.layouts.sideBar')
+        .admin-container-right {
+            font-size: 10px;
+        }
+    </style>
 
-        <style>
-            td {
-                white-space: nowrap;
-            }
+    <div class="admin-container-right">
+        <div class="admin-container-type-list">
 
-            .admin-container-right {
-                font-size: 12px;
-            }
-        </style>
+            <table>
+                <tr>
+                    <th>STT</th>
+                    <th>ID</th>
+                    <th>Tên Sản Phẩm</th>
+                    <th>Màu</th>
+                    <th>Size</th>
+                    <th>Giá (VNĐ)</th>
+                    <th>Ảnh Gốc</th>
+                    <th>Số Lượng</th>
+                    <th>Ngày Tạo</th>
+                </tr>
 
-        <div class="admin-container-right">
-            <div class="admin-container-type-list">
+                @if(!empty($data))
+                @foreach ($data as $key => $value)
+                <tr>
+                    <td>{{$key+1}}</td>
+                    <td>{{$value->id}}</td>
+                    <td>{{$value->nameProduct}}</td>
+                    <td>{{$value->nameColor}}</td>
+                    <td>{{$value->nameSize}}</td>
+                    <td>{{$value->price}}</td>
+                    <td><img style="height: 50px;width: 30px;" src="{{asset('storage/'.$value->img)}}" alt="Error"></td>
+                    <td>{{$value->amount}}</td>
+                    <td>{{$value->created_at}}</td>
+                    <!-- <td>
+                        <a href="{{ route('admin.order.detail.destroy', ['id' => $value->id]) }}">Xóa</a>
+                    </td> -->
+                </tr>
+                @endforeach
+                @else
+                <tr>
+                    <td colspan="13">Không có sản phẩm nào</td>
+                </tr>
+                @endif
 
-                <table>
-                    <tr>
-                        <th>STT</th>
-                        <th>ID</th>
-                        <th>Tên Sản Phẩm</th>
-                        <th>Số Lượng</th>
-                        <th>Giá/1SP</th>
-                        <th>Tổng</th>
-                        <th>Trạng Thái</th>
-                        <th>Tùy Biến</th>
-                    </tr>
-
-                    <tr>
-                        <td>1</td>
-                        <td><a href="">F_SHOP_1</a></td>
-                        <td>Phúc</td>
-                        <td>Quảng Bình</td>
-                        <td>20/11/2023</td>
-                        <td>199.999 đ</td>
-                        <td>Đang chờ xác nhận</td>
-                        <td>Sửa | Xóa</td>
-                    </tr>
-
-                </table>
-            </div>
+            </table>
         </div>
-    </section>
+    </div>
+</section>
 
 </body>
 
