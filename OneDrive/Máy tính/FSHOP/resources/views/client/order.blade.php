@@ -48,15 +48,20 @@
                 <th>Số lượng</th>
                 <th>Giá</th>
                 <th>Tổng</th>
-                <th>Trạng tháis</th>
+                <th style="width: 100px;">Trạng thái</th>
             </thead>
             <tbody>
                 @if(!empty($datasOrder))
                 @foreach($datasOrder as $keyOrder => $order)
 
                 <tr>
-                    <td colspan="3"><b>ID Đơn hàng : {{$keyOrder}}</b></td>
+                    <td colspan="4"><b>ID Đơn hàng : {{$keyOrder}}</b></td>
                     <td colspan="2"><b><i>Địa chỉ : </i></b>{{$order['order']->address}}</td>
+
+                </tr>
+
+                <tr>
+                    <td colspan="5"></td>
                     @php
                     $rowspan = $order['order']->numberProductInOrder+5;
                     @endphp
@@ -79,17 +84,25 @@
                         <hr>
                     </td>
                 </tr>
+                @php
+                $totalAmount = 0 ;
+                @endphp
 
 
                 @if(!empty($order['details']))
                 @foreach($order['details'] as $detail)
 
                 <tr style="text-align : center">
-                    <td><img style="height: 50px;width: 30px;" src="{{asset('storage/'.$detail->img)}}" alt=""></td>
+                    <td><img style="height: 100px;object-fit: contain;" src="{{asset('storage/'.$detail->img)}}" alt=""></td>
                     <td style="text-align: left; padding: 20px;">
-                        <p style="font-size: larger;">{{ $detail->nameProduct }}</p>
-                        <span>Màu: </span>
+                        <p style="font-size: larger;font-weight: 600;">{{ $detail->nameProduct }}</p>
+                        <span>Màu: {{$detail->nameColor}} </span><br>
+                        <span>Size: {{$detail->nameSize}} </span>
                     </td>
+
+                    @php
+                    $totalAmount+=$detail->amount ;
+                    @endphp
 
                     <td>{{$detail->amount}}</td>
                     <td>{{ number_format($detail->price) }} VND</td>
@@ -99,18 +112,24 @@
                 @endforeach
                 @endif
                 <tr>
-                    <td colspan="3">
+                    <td colspan="2">
                         <h3>Tổng:</h3>
                     </td>
+                    <td colspan="1" style="text-align: center;">
+                        {{$totalAmount}}
+                    </td>
+
                     <td>
                     <td style="text-align: center;"><b style="font-weight: 400;"><i>{{number_format($order['order']->total) }} VND</i></b></td>
                     </td>
                 </tr>
-                <tr style="background-color: rgb(250, 250, 250);">
-                    <td colspan="3">
+                <tr style="background-color: rgb(240, 240, 240);">
+                    <td colspan="3" style="border-collapse: collapse;">
                         <h3><i>Thành tiền</i></h3>
                     </td>
-                    <td>
+
+                    <td style="text-align: center;"><b style="font-weight: 400;">+ <i>{{number_format(45000) }} VND</i></b></td>
+
                     <td style="text-align: center;"><i><b>{{number_format($order['order']->total+45000) }} VND</b></i></td>
                     </td>
                 </tr>
@@ -129,22 +148,3 @@
 </section>
 
 @include('client.footer.footer')
-
-@if(!empty($datas))
-@foreach($datas as $keyP => $parent)
-<li class="list-item">
-
-    <a href="">{{$parent['name']}}</a>
-    <ul class="submenu">
-        @php
-        $count=0;
-        @endphp
-        @while(!empty($parent[$count]))
-        <li class="item-li">
-            <a href="{{ route('client.getCartegory',['slug' => $parent[$count]['slug']] ) }}">{{ $parent[$count++]['name'] }}</a>
-        </li>
-        @endwhile
-    </ul>
-</li>
-@endforeach
-@endif

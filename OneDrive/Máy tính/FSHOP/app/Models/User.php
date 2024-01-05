@@ -96,6 +96,21 @@ class User extends Authenticatable
         $arr = [$name, $username, $email, $password, $address, $phone, $status, $token, $updated_at, $province_id, $district_id, $ward_id, $id];
         return DB::update($sql, $arr);
     }
+    public function updateInfor($name, $email, $address, $phone, $updated_at, $province_id, $district_id, $ward_id, $id)
+    {
+        $sql = 'UPDATE users 
+                SET     name = ?,
+                        email = ?,
+                        address = ?,
+                        phone = ?,
+                        updated_at = ?,
+                        province_id = ?,
+                        district_id = ?,
+                        ward_id = ?
+                WHERE id = ?  ';
+        $arr = [$name, $email, $address, $phone, $updated_at, $province_id, $district_id, $ward_id, $id];
+        return DB::update($sql, $arr);
+    }
     // DELETE
     public function del($id)
     {

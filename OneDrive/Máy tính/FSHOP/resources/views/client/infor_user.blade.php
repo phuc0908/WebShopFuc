@@ -19,6 +19,7 @@
 
     button:hover {
         background: gray;
+        color: white;
     }
 </style>
 <section class="container" style="padding: 120px 0 0 0;height: 690px;">
@@ -40,9 +41,13 @@
         </ul>
     </div>
     <div class="right-container">
-        <div class="right-con top">
+        <div class="right-con top" style="position: relative;">
+
             @if(!empty($infor))
             @foreach($infor as $value)
+            <a href="{{route('client.edit.infor',['id' => $value->id])}}">
+                <button style="width: 50px;height: 20px;position: absolute;top: 0;right: 0;border-radius: 3px;border: solid 0.1px gray;">Sửa</button>
+            </a>
             <div>
                 <h3>Thông tin tài khoản</h3>
                 <p>Tên Đăng Nhập : {{$value->username}} </p>

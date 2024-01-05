@@ -110,6 +110,4 @@ class CartegoryController extends Controller
         (new Cartegory)->del($id);
         return redirect()->back()->with('alertDelete', 'Xóa thành công');
     }
-
-
 }

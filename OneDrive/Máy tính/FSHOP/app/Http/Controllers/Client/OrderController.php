@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Models\Cartegory;
 use App\Models\Order;
 use App\Models\DetailOrder;
-use App\Models\User;
 use App\Helpers\Cart;
 use Carbon\Carbon;
 
@@ -112,18 +111,7 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+   
 
     /**
      * Remove the specified resource from storage.

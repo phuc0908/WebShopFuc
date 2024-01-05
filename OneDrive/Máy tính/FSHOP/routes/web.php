@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Client\ProductController as ProductClient;
 // 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Client\UserController as UserClient;
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\HomeController as HomeClient;
 use App\Http\Controllers\Client\PayController;
@@ -53,7 +54,7 @@ Route::middleware('client.check')->prefix("")->group(function () {
     });
     // payment
     Route::get('purched', [PayController::class, "create"])->name("client.pay");
-    
+
     Route::post('purched', [PayController::class, "pay"])->name("client.payOrder");
     // Product
     Route::prefix("product")->group(function () {
@@ -79,8 +80,13 @@ Route::middleware('client.check')->prefix("")->group(function () {
         ->name('client.auth.infor');
     Route::get('my-order', [OrderClient::class, 'create'])
         ->name('client.myOrder');
+
     Route::post('infor', [AuthController::class, 'logout'])
         ->name("client.auth.logout");
+    // Edit
+    Route::get('edit-infor/{id}', [UserClient::class, 'edit'])
+        ->name('client.edit.infor');
+    Route::post('edit-infor/{id}', [UserClient::class, 'update'])->name('client.update.infor');
 
 
 
