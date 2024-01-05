@@ -31,6 +31,13 @@ class Product extends Model
     {
         return DB::select('SELECT * FROM products');
     }
+    // in view list
+    public function searchNameProduct($name)
+    {
+        $sql = "SELECT * FROM products
+        WHERE name LIKE '%$name%'";
+        return DB::select($sql);
+    }
     // in view list HOME
     public function showRandom()
     {

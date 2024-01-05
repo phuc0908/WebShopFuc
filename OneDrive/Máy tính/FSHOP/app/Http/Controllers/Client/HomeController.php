@@ -58,4 +58,14 @@ class HomeController extends Controller
         $dataProduct = (new Product)->showAll();
         return view('client.productOfCartegory', compact('datas', 'dataProduct'));
     }
+    public function searchProduct(Request $request)
+    {
+        if ($request->nameProduct != null) {
+            $datas = $this->getCate();
+            $dataProduct = (new Product)->searchNameProduct($request->nameProduct);
+            return view('client.search', compact('datas', 'dataProduct'));
+        } else {
+            return redirect()->back();
+        }
+    }
 }

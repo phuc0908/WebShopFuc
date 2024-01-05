@@ -50,17 +50,17 @@
             </a>
             <div>
                 <h3>Thông tin tài khoản</h3>
-                <p>Tên Đăng Nhập : {{$value->username}} </p>
-                <p>Email : {{$value->email}}</p>
-                <p>Điện thoại : {{$value->phone}}</p>
+                <p><b>Tên Đăng Nhập</b> : {{$value->username}} </p>
+                <p><b>Email</b> : {{$value->email}}</p>
+                <p><b>Điện thoại</b> : {{$value->phone}}</p>
             </div>
         </div>
         <div class="right-con bot">
             <h3>Địa chỉ nhận hàng</h3>
             <div>
-                <p>Tên : {{$value->name}}</p>
-                <p>Địa chỉ : {{$value->address." / ".$value->nameWard." / ".$value->nameDistrict." / ".$value->nameProvince}}</p>
-                <p>Điện thoại : {{$value->phone}}</p>
+                <p><b>Tên người nhận hàng</b> : {{$value->name}}</p>
+                <p><b>Địa chỉ </b>: {{$value->address." / ".$value->nameWard." / ".$value->nameDistrict." / ".$value->nameProvince}}</p>
+                <p><b>Điện thoại</b> : {{$value->phone}}</p>
             </div>
         </div>
         @endforeach

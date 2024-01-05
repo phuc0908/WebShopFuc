@@ -40,6 +40,8 @@ Route::middleware('client.check')->prefix("")->group(function () {
     Route::get('', [HomeClient::class, "create"])
         ->name("client.index");
     Route::get('index', [HomeClient::class, "create"]);
+    // SEARCH
+    Route::post('index', [HomeClient::class, "searchProduct"])->name('client.search');
 
     Route::get('danh-muc/{slug?}', [HomeClient::class, "show"])->name('client.getCartegory');
 

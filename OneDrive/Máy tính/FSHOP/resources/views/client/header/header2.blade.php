@@ -32,16 +32,31 @@
                 </li>
             </ul>
         </div>
+
+
+        <style>
+            .icon-search {
+                border: none;
+                background-color: white;
+                cursor: pointer;
+                height: 90%;
+            }
+        </style>
+
+
         <div class="head_center">
             <a href="{{ route('client.index') }}">
                 <img src="/img/logo_P_1.png" alt="logo" />
             </a>
         </div>
         <div class="head_right">
-            <input class="input-search" type="text" placeholder="search" />
-            <span class="icon icon-search">
-                <ion-icon name="search-outline"></ion-icon>
-            </span>
+            <form style="display: flex;align-items: center;" method="post" action="{{route('client.search')}}">
+                @csrf
+                <input class="input-search" type="text" placeholder="search" name="nameProduct" />
+                <button class="icon icon-search" type="submit">
+                    <ion-icon name="search-outline"></ion-icon>
+                </button>
+            </form>
             <!-- Cart -->
             <span class="icon">
                 <a href="{{ route('client.cart') }}">
