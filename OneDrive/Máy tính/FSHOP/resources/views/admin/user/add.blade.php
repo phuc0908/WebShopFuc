@@ -85,8 +85,9 @@
                     </div>
 
                     <div class="address">
-                        <label>Tỉnh</label><br>
+                        <label>Tỉnh/TP</label><br>
                         <select name="provinces" id="provinces">
+                            <option selected disabled value="">-------</option>
                             @if(!empty($provinces))
                             @foreach($provinces as $v)
                             <option value="{{$v->code}}">{{$v->name}}</option>
@@ -97,14 +98,14 @@
                         <label>Huyện/Quận</label>
                         <br>
                         <select name="districts" id="districts">
-
+                            <option selected disabled value="">-------</option>
                         </select>
 
                         <br>
                         <label>Xã/Thị Trấn</label>
                         <br>
                         <select name="wards" id="wards">
-
+                            <option selected disabled value="">-------</option>
                         </select>
                         <br />
                         <label>Nhập địa chỉ</label>
@@ -129,56 +130,7 @@
 </section>
 </body>
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-<script>
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    })
-    $("#provinces").change(function() {
-        var province_code = $(this).val();
-
-        $.ajax({
-            type: 'get',
-            url: 'showDistricts/' + province_code,
-            dataType: 'json',
-            success: function(data) {
-                $("#wards").html('');
-                $("#districts").html('');
-                $.each(data, function(key, value) {
-                    $("#districts").append(
-                        "<option value=" + value.code + ">" + value.name + "</option>"
-                    );
-                });
-
-            },
-            error: function(data) {
-                console.log('Error:', data);
-            }
-        });
-    });
-    $("#districts").change(function() {
-        var district_code = $(this).val();
-
-        $.ajax({
-            type: 'get',
-            url: 'showWards/' + district_code,
-            dataType: 'json',
-            success: function(data) {
-                $("#wards").html('');
-                $.each(data, function(key, value) {
-                    $("#wards").append(
-                        "<option value=" + value.code + ">" + value.name + "</option>"
-                    );
-                });
-            },
-            error: function(data) {
-                console.log('Error:', data);
-            }
-        });
-    });
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="/js/jqueryAddress.js"></script>
 
 </html>

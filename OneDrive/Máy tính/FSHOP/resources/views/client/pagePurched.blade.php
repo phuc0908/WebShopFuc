@@ -3,7 +3,10 @@
 <!-- <link rel="stylesheet" href="/css/client/cart.css" /> -->
 @include('client.header.header2')
 <style>
-  
+    span.error {
+        color: #f44336;
+        font-size: smaller;
+    }
 </style>
 <section class="container">
     <div class="top-container">
@@ -40,9 +43,7 @@
                                 <p>Điện Thoại : {{$inforMySelf->phone}}</p>
                             </li>
                             <!-- <li>
-                            <p>
-                                Đia Chỉ :{{$inforMySelf->address." / ".$inforMySelf->nameWard." / ".$inforMySelf->nameDistrict." / ".$inforMySelf->nameProvince}}
-                            </p>
+                           
                             <input type="hidden" name="address" value="{{$inforMySelf->address." / ".$inforMySelf->nameWard." / ".$inforMySelf->nameDistrict." / ".$inforMySelf->nameProvince}}">
                         </li> -->
                         </ul>
@@ -53,18 +54,22 @@
 
                         <ul style="
                                     border: 1px solid #cccc;
-                                    padding: 20px 0 20px 20px;
+                                    padding: 20px 0 20px 0;
                                     margin: 15px;
-                                    border-radius: 4px;
-                                ">
-                            <li>
-                                <div style="display: flex;align-items: center;">
-                                    <input checked type="radio" name="addressRadio" id=""><span style="padding: 0 20px;">Địa chỉ trong tài khoản của bạn</span>
+                                    border-radius: 4px; ">
+                            <li class="formMyAddress">
+                                <div style=" display: flex;align-items: center;margin: 0 0 20px 0;">
+
+                                    <input class="addressRadio" checked type="radio" name="addressRadio" value="0" {{ old("addressRadio") == 0 ? 'checked' : '' }}>
+
+                                    <span style="padding: 0 20px;">Địa chỉ trong tài khoản của bạn</span>
+
                                 </div>
-                                <div style="display: flex;align-items: center;">
-                                    <input type="radio" name="addressRadio" id=""><span style="padding: 0 20px;">Địa chỉ khác</span>
-                                </div>
-                                <input type="hidden" name="address" value="{{$inforMySelf->address." / ".$inforMySelf->nameWard." / ".$inforMySelf->nameDistrict." / ".$inforMySelf->nameProvince}}">
+                                <p>
+                                    <b>Đia Chỉ</b> :{{$inforMySelf->address." / ".$inforMySelf->nameWard." / ".$inforMySelf->nameDistrict." / ".$inforMySelf->nameProvince}}
+                                </p>
+
+                                <input type="hidden" name="myAddress" value="{{$inforMySelf->address." / ".$inforMySelf->nameWard." / ".$inforMySelf->nameDistrict." / ".$inforMySelf->nameProvince}}">
                             </li>
                         </ul>
                     </div>
@@ -116,56 +121,63 @@
                 </div>
             </div>
 
-            <div class="selectAddress onEventPointer">
-
-                <div class="infor_customer">
-                    <label for="">Tỉnh/TP</label> <br />
-                    <select name="provinces" id="provinces">
-                        <option selected disabled value="">-------</option>
-                        @if(!empty($provinces))
-                        @foreach($provinces as $v)
-                        <option value="{{$v->name}}">{{$v->name}}</option>
-                        @endforeach
-                        @endif
-                    </select><br>
-                    <span class="error">
-                        @error('provinces')
-                        {{$message}}
-                        @enderror
-                    </span>
+            <div class="otherAddress">
+                <div style="display: flex;align-items: center;">
+                    <input type="radio" name="addressRadio" class="addressRadio" value="1" {{ old("addressRadio") == 1 ? 'checked' : '' }}>
+                    <span style=" padding: 0 20px;">Địa chỉ khác</span>
                 </div>
 
-                <div class="infor_customer">
-                    <label for="">Quận/Huyện</label><br />
-                    <select name="districts" id="districts">
-                        <option selected disabled value="">-------</option>
-                    </select><br>
-                    <span class="error">
-                        @error('districts')
-                        {{$message}}
-                        @enderror
-                    </span>
-                </div>
+                <div class="selectAddress">
+                    <div class="infor_customer">
+                        <label for="">Tỉnh/TP</label> <br />
+                        <select name="provinces" id="provinces">
+                            <option selected disabled value="">-------</option>
+                            @if(!empty($provinces))
+                            @foreach($provinces as $v)
+                            <option value="{{$v->code}}">{{$v->name}}</option>
 
-                <div class="infor_customer">
-                    <label for="">Phường/Xã</label><br />
-                    <select name="wards" id="wards">
-                        <option selected disabled value="">-------</option>
-                    </select><br>
-                    <span class="error">
-                        @error('wards')
-                        {{$message}}
-                        @enderror
-                    </span>
-                </div>
-                <div class="infor_customer">
-                    <label for="">Địa Chỉ</label><br />
-                    <input type="text" name="address" id="" placeholder="Địa chỉ..." value="{{ old('address') }}" /><br>
-                    <span class="error">
-                        @error('address')
-                        {{$message}}
-                        @enderror
-                    </span>
+                            @endforeach
+                            @endif
+                        </select><br>
+                        <span class="error">
+                            @error('provinces')
+                            {{$message}}
+                            @enderror
+                        </span>
+                    </div>
+
+                    <div class="infor_customer">
+                        <label for="">Quận/Huyện</label><br />
+                        <select name="districts" id="districts">
+                            <option selected disabled value="">-------</option>
+                        </select><br>
+                        <span class="error">
+                            @error('districts')
+                            {{$message}}
+                            @enderror
+                        </span>
+                    </div>
+
+                    <div class="infor_customer">
+                        <label for="">Phường/Xã</label><br />
+                        <select name="wards" id="wards">
+                            <option selected disabled value="">-------</option>
+                        </select><br>
+                        <span class="error">
+                            @error('wards')
+                            {{$message}}
+                            @enderror
+                        </span>
+                    </div>
+                    <div class="infor_customer">
+                        <label for="">Địa Chỉ</label><br />
+                        <input type="text" name="address" id="" placeholder="Địa chỉ..." value="{{ old('address') }}" /><br>
+                        <span class="error">
+                            @error('address')
+                            {{$message}}
+                            @enderror
+                        </span>
+                    </div>
                 </div>
             </div>
 
@@ -173,16 +185,15 @@
                 <h3>Phương Thức Thanh Toán</h3>
                 <ul style="
                                 border: 1px solid #cccc;
-                                padding: 20px 0 20px 20px;
+                                padding: 20px 0 ;
                                 margin: 15px;
                                 border-radius: 4px;
                             ">
-                    <li>
-                        Mọi giao dịch đều được bảo mật và mã hóa. Thông
-                        tin thẻ tín dụng sẽ không bao giờ được lưu lại
-                    </li>
 
-                    <li>
+                    <li style="height: 10px;">
+                        <p>Chọn phương thức giao hàng (Hiện tại chúng tôi chưa có phương thức thanh toán qua ngân hàng và thẻ tín dụng)</p>
+                    </li>
+                    <li style="height: 2px;">
                         <i class="fa-solid fa-circle-check"></i>
                         <label for="">Thanh toán khi giao hàng</label>
                     </li>
@@ -239,67 +250,7 @@
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        })
-        $("#provinces").change(function() {
-            var province_code = $(this).val();
-
-            $.ajax({
-                type: 'get',
-                url: '/showDistricts/' + province_code,
-                dataType: 'json',
-
-                success: function(data) {
-                    $("#wards").html('');
-                    $("#districts").html('');
-
-                    $("#districts").append(
-                        "<option selected disabled value=''>-------</option>"
-                    );
-                    $("#wards").append(
-                        "<option selected disabled value=''>-------</option>"
-                    );
-                    $.each(data, function(key, value) {
-                        $("#districts").append(
-                            "<option value=" + value.name + ">" + value.name + "</option>"
-                        );
-                    });
-                },
-                error: function(data) {
-                    console.log('Error:', data);
-                }
-            });
-        });
-        $("#districts").change(function() {
-            var district_code = $(this).val();
-
-            $.ajax({
-                type: 'get',
-                url: '/showWards/' + district_code,
-                dataType: 'json',
-                success: function(data) {
-                    $("#wards").html('');
-
-                    $("#wards").append(
-                        "<option selected disabled value=''>-------</option>"
-                    );
-                    $.each(data, function(key, value) {
-                        $("#wards").append(
-                            "<option value=" + value.name + ">" + value.name + "</option>"
-                        );
-                    });
-                },
-                error: function(data) {
-                    console.log('Error:', data);
-                }
-            });
-        });
-    });
-</script>
+<script src="/js/jqueryAddress.js"></script>
+<script src="/js/purched.js"></script>
 
 @include('client.footer.footer')

@@ -107,7 +107,7 @@
             <h1><i>Sản phẩm</i></h1>
             <div class="row">
                 <div class="infor product">
-                    <p>Tổng loại sản phẩm có trên cửa hàng</p>
+                    <p>Tổng loại sản phẩm </p>
                     <div class="jus">
                         @if(!empty($numberOfProduct))
                         <h1 class="ofjus">{{$numberOfProduct}}</h1>

@@ -68,7 +68,7 @@ class OrderController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, Cart $cart)
+    public function store(Request $request, Cart $cart, $address)
     {
         // dd(session()->all());
         $order = new Order();
@@ -80,7 +80,7 @@ class OrderController extends Controller
 
         if ($list !== null) {
             // add new Order
-            $isAdded = $order->insert(session('idUser'), "$request->address", $dateCreate, 0, 0);
+            $isAdded = $order->insert(session('idUser'), $address, $dateCreate, 0, 0);
             // id order just created
             $order_id = $order->getLastedOrder()[0]->id;
             // var 

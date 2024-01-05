@@ -48,10 +48,41 @@ class PayController extends Controller
      */
     public function pay(Request $request, Cart $cart)
     {
+        // dd($request);
         $datas = $this->getCate();
-        // add Order
+        // RADIO
+        $radio = $request->addressRadio;
+        if ($radio == 1) {
+
+            $validatedData = $request->validate(
+                [
+                    'address' => ['required'],
+                    'provinces' => ['required'],
+                    'districts' => ['required'],
+                    'wards' => ['required'],
+                ],
+                [
+                    'address.required' => 'Bạn chưa điền vào ô trống',
+                    'provinces.required' => 'Bạn chưa chọn option nào',
+                    'districts.required' => 'Bạn chưa chọn option nào',
+                    'wards.required' => 'Bạn chưa chọn option nào',
+                ]
+            );
+
+            // get Value Address
+            $address = new Address();
+            $province = $address->getOneProvince($request->provinces)[0]->name;
+            $district = $address->getOneDistrict($request->districts)[0]->name;
+            $ward = $address->getOneWard($request->wards)[0]->name;
+
+            $address = $request->address . " / " . $ward . " / " . $district . " / " . $province;
+        } else {
+            $address = $request->myAddress;
+        }
+
+        // add ORDER
         $order = new ClientOrderController();
-        $order->store($request, $cart);
+        $order->store($request, $cart, $address);
 
         return redirect(route('client.myOrder'));
     }

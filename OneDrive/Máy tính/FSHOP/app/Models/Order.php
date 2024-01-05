@@ -24,7 +24,7 @@ class Order extends Model
     }
     public static function get($idUser)
     {
-        $sql = 'SELECT o.id, COUNT(do.id) AS numberProductInOrder, o.state , o.total
+        $sql = 'SELECT o.id, COUNT(do.id) AS numberProductInOrder, o.state , o.total, o.address
                 FROM orders o
                 LEFT JOIN details_order do ON o.id = do.order_id 
                 WHERE o.user_id = ?

@@ -175,7 +175,7 @@ header img {
     margin-bottom: 30px;
 }
 .function_ship ul li {
-    margin-left: 30px;
+    margin-left: 15px;
     margin-bottom: 30px;
 }
 
@@ -310,21 +310,34 @@ header img {
 }
 
 /* FORM ADDRESS */
-.selectAddress {
-    display: flex;
-    flex-wrap: wrap;
+.otherAddress {
+    padding: 20px 0 20px 30px;
     border: 1px solid #cccc;
-    padding: 20px 0 20px 20px;
     margin: 15px;
     border-radius: 4px;
 }
 
-.offEventPointer {
+.selectAddress {
+    display: flex;
+    flex-wrap: wrap;
+}
+/* Display */
+.displayNone {
     display: none;
 }
 
-.onEventPointer {
+.displayFlex {
     display: flex;
+}
+
+.displayBlock {
+    display: block;
+}
+.opacity5 {
+    opacity: 0.5;
+}
+.opacity10 {
+    opacity: 1;
 }
 /* ---------------------------footer------------------ */
 .footer {

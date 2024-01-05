@@ -18,7 +18,7 @@ class Address extends Model
     }
     public function getOneDistrict($code)
     {
-        $sql = 'SELECT code,name,full_name FROM dsitricts  WHERE code = ?';
+        $sql = 'SELECT code,name,full_name FROM districts  WHERE code = ?';
         return DB::select($sql, [$code]);
     }
     public function getOneWard($code)
@@ -29,7 +29,7 @@ class Address extends Model
     // eg: Quảng Bình,...
     public function getProvinces()
     {
-        $sql = 'SELECT code,name,full_name FROM provinces  ORDER BY name';
+        $sql = 'SELECT code,name,full_name FROM provinces ';
         return DB::select($sql);
     }
 

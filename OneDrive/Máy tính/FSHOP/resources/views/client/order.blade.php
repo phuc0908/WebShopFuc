@@ -55,9 +55,10 @@
                 @foreach($datasOrder as $keyOrder => $order)
 
                 <tr>
-                    <td colspan="5"><b>ID Đơn hàng : {{$keyOrder}}</b></td>
+                    <td colspan="3"><b>ID Đơn hàng : {{$keyOrder}}</b></td>
+                    <td colspan="2"><b><i>Địa chỉ : </i></b>{{$order['order']->address}}</td>
                     @php
-                    $rowspan = $order['order']->numberProductInOrder+3;
+                    $rowspan = $order['order']->numberProductInOrder+5;
                     @endphp
                     @if($order['order']->state==0)
                     <td rowspan="{{$rowspan }}" style="text-align: center;color: blue;">
@@ -99,14 +100,22 @@
                 @endif
                 <tr>
                     <td colspan="3">
-                        <h3><i>Tổng:</i></h3>
+                        <h3>Tổng:</h3>
                     </td>
                     <td>
-                    <td style="text-align: center;"><b>{{number_format($order['order']->total) }} VND</b></td>
+                    <td style="text-align: center;"><b style="font-weight: 400;"><i>{{number_format($order['order']->total) }} VND</i></b></td>
+                    </td>
+                </tr>
+                <tr style="background-color: rgb(250, 250, 250);">
+                    <td colspan="3">
+                        <h3><i>Thành tiền</i></h3>
+                    </td>
+                    <td>
+                    <td style="text-align: center;"><i><b>{{number_format($order['order']->total+45000) }} VND</b></i></td>
                     </td>
                 </tr>
                 <tr>
-                    <td style="height: 20px;"></td>
+                    <td colspan="6" style="height: 40px;"></td>
                 </tr>
 
 
