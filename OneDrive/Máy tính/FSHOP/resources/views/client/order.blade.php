@@ -48,7 +48,7 @@
                 <th>Số lượng</th>
                 <th>Giá</th>
                 <th>Tổng</th>
-                <th>Trạng thái</th>
+                <th>Trạng tháis</th>
             </thead>
             <tbody>
                 @if(!empty($datasOrder))
